@@ -276,19 +276,50 @@ const courseData = [
                 title: "I. Introduction & Homogeneous",
                 groups: [
                     {
+                        // Intro Text Card
+                        cards: [
+                            {
+                                title: "Introduction to Advanced Architectures",
+                                content: [
+                                    "Modern computer system designs integrate innovative hardware structures and advanced processing technologies to achieve superior performance, flexibility, scalability, and energy efficiency, moving beyond the limits of traditional computing."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        // Evolution Comparison
                         isTree: true,
                         root: {
-                            title: "Homogeneous Computing",
-                            content: ["Traditional multi-core CPUs.", "Identical units."]
+                            title: "Evolution: Traditional to Advanced",
+                            content: ["Moving from One-Size-Fits-All to Specialization."]
                         },
                         children: [
                             {
-                                title: "Limitations",
-                                content: ["Inefficient for diverse workloads.", "Power hungry."]
+                                title: "Homogeneous Computing (Traditional)",
+                                content: [
+                                    "Systems using identical processor cores/units for all tasks (e.g., multi-core CPUs).",
+                                    "Uniform architecture and simplified programming."
+                                ]
                             },
                             {
-                                title: "Why Advanced?",
-                                content: ["Modern apps (AI/IoT) need specialization."]
+                                title: "Limitations",
+                                content: [
+                                    "Inefficient for diverse, specialized workloads.",
+                                    "High power consumption for specialized tasks.",
+                                    "One-size-fits-all approach is inadequate for AI and real-time processing."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        // Why Advanced?
+                        cards: [
+                            {
+                                title: "Why Advanced Architectures?",
+                                content: [
+                                    "Modern applications like Artificial Intelligence, big data analytics, real-time processing, and IoT demand diverse and specialized computational capabilities that monolithic, homogeneous systems cannot efficiently satisfy.",
+                                    "This necessity drives the push for domain-specific and heterogeneous designs."
+                                ]
                             }
                         ]
                     }
@@ -298,19 +329,42 @@ const courseData = [
                 title: "II. Heterogeneous Computing",
                 groups: [
                     {
+                        cards: [
+                            {
+                                title: "Heterogeneous Computing Definition",
+                                content: [
+                                    "Heterogeneous computing utilizes multiple processor types (CPU, GPU, FPGA) working collaboratively, with each component optimized for specific segments of the workload."
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         isTree: true,
                         root: {
-                            title: "Heterogeneous Computing",
-                            content: ["CPU + GPU + FPGA working together.", "Optimized for segments."]
+                            title: "Key Components and Functions",
+                            content: ["Components working collaboratively."]
                         },
                         children: [
                             {
-                                title: "Components",
-                                content: ["CPU (Control)", "GPU (Parallel)", "FPGA (Custom)."]
+                                title: "CPU",
+                                content: [
+                                    "<span style='color: #4ade80;'>Function</span>: General-purpose, control logic, sequential processing.",
+                                    "<span style='color: #4ade80;'>Role</span>: Flexibility, complex decision-making, OS management."
+                                ]
                             },
                             {
-                                title: "Trade-offs",
-                                content: ["Pro: Performance/Power.", "Con: Complex coding."]
+                                title: "GPU",
+                                content: [
+                                    "<span style='color: #4ade80;'>Function</span>: Massive parallel processing, floating-point mathematical computations.",
+                                    "<span style='color: #4ade80;'>Role</span>: AI/ML training, graphics rendering, thousands of simultaneous operations."
+                                ]
+                            },
+                            {
+                                title: "FPGA",
+                                content: [
+                                    "<span style='color: #4ade80;'>Function</span>: Reconfigurable hardware for custom acceleration.",
+                                    "<span style='color: #4ade80;'>Role</span>: Protocol handling, specific function acceleration (e.g., encryption), low-latency tasks."
+                                ]
                             }
                         ]
                     }
@@ -322,13 +376,27 @@ const courseData = [
                     {
                         isTree: true,
                         root: {
-                            title: "Reconfigurable Computing",
-                            content: ["Hardware adaptable after manufacturing (FPGA)."]
+                            title: "Core Components of an FPGA",
+                            content: ["Hardware adaptable after manufacturing."]
                         },
                         children: [
                             {
-                                title: "Core Components",
-                                content: ["Logic Blocks (CLBs)", "Interconnects", "I/O Blocks."]
+                                title: "Programmable Logic Blocks (CLBs)",
+                                content: [
+                                    "Basic building blocks containing Look-Up Tables (LUTs) for logic and Flip-Flops for sequential storage."
+                                ]
+                            },
+                            {
+                                title: "Programmable Interconnects",
+                                content: [
+                                    "Routing channels and switches that define the path between logic blocks, forming the custom circuit."
+                                ]
+                            },
+                            {
+                                title: "I/O Blocks",
+                                content: [
+                                    "Interfaces that connect the reconfigurable fabric to external signals and peripherals."
+                                ]
                             }
                         ]
                     }
@@ -338,19 +406,31 @@ const courseData = [
                 title: "IV. Memory-Centric Architectures",
                 groups: [
                     {
+                        cards: [
+                            {
+                                title: "The Problem",
+                                content: [
+                                    "<span style='color: #4ade80;'>Memory Wall</span>: The growing disparity between processor speed and memory latency/bandwidth.",
+                                    "<span style='color: #4ade80;'>Power Wall</span>: High energy cost of moving data between memory and the CPU.",
+                                    "Solution: Integrate computation closer to data storage to significantly reduce energy costs."
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         isTree: true,
                         root: {
-                            title: "Memory-Centric",
-                            content: ["Moving compute to data.", "Objective: Beat Memory Wall."]
+                            title: "Memory-Centric Approaches",
+                            content: ["Processing closer to where data lives."]
                         },
                         children: [
                             {
-                                title: "Processing Near Memory",
-                                content: ["Compute on same chip package.", "High bandwidth."]
+                                title: "Processing Near Memory (PNM)",
+                                content: ["Compute logic is placed on the same chip package or stack/die as memory.", "High bandwidth."]
                             },
                             {
-                                title: "Processing Using Memory",
-                                content: ["Logic inside memory cells.", "Analog properties."]
+                                title: "Processing Using Memory (PUM)",
+                                content: ["Computation is performed inside the memory arrays/cells themselves using analog properties."]
                             }
                         ]
                     }
@@ -360,19 +440,53 @@ const courseData = [
                 title: "V. 3D Integrated Circuits (3D ICs)",
                 groups: [
                     {
+                        cards: [
+                            {
+                                title: "Definition",
+                                content: [
+                                    "3D ICs are semiconductor devices where active component layers are stacked vertically and interconnected, acting as a single, highly integrated system.",
+                                    "This technique is critical for miniaturization and performance scaling."
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         isTree: true,
                         root: {
-                            title: "3D ICs",
-                            content: ["Vertical stacking of active layers.", "Miniaturization."]
+                            title: "Key Enabling Technologies",
+                            content: ["Critical techniques for 3D stacking."]
                         },
                         children: [
                             {
-                                title: "Enabling Tech",
-                                content: ["TSVs (Connections)", "Wafer Bonding."]
+                                title: "Through-Silicon Vias (TSVs)",
+                                content: [
+                                    "Vertical electrical connections passing through the silicon die, providing high-density, low-latency communication paths between stacked layers.",
+                                    "Far superior to traditional wire-bonds."
+                                ]
                             },
                             {
-                                title: "Challenges",
-                                content: ["Thermal Management (Hotspots).", "Testing."]
+                                title: "Heterogeneous Integration",
+                                content: [
+                                    "Stacking diverse components (logic, memory, sensors) fabricated on their optimal process nodes.",
+                                    "Example: High-Bandwidth Memory (HBM)."
+                                ]
+                            },
+                            {
+                                title: "Wafer Bonding Techniques",
+                                content: [
+                                    "Advanced processes (Wafer-on-wafer, Die-on-wafer, Hybrid bonding) used to physically join the stacked semiconductor layers with high precision."
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        cards: [
+                            {
+                                title: "Challenges in Implementation",
+                                content: [
+                                    "<span style='color: #4ade80;'>Thermal Management</span>: The dense vertical stacking creates 'hotspots' that are difficult to dissipate.",
+                                    "Other challenges: Complex 3D-aware design tools, lower yield, testing difficulties, and higher cost."
+                                ]
                             }
                         ]
                     }
@@ -382,19 +496,54 @@ const courseData = [
                 title: "VI. Optical and Photonic Computing",
                 groups: [
                     {
+                        cards: [
+                            {
+                                title: "Definition",
+                                content: [
+                                    "This revolutionary field uses photons (light) instead of electrons for data processing, storage, and communication, promising to eliminate the electrical bottleneck entirely."
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         isTree: true,
                         root: {
-                            title: "Optical Computing",
-                            content: ["Using photons (light) for processing.", "No electrical resistance."]
+                            title: "Core Components",
+                            content: ["Components of Light-Based Processing."]
                         },
                         children: [
                             {
-                                title: "Core Components",
-                                content: ["Lasers", "Waveguides", "Modulators."]
+                                title: "Lasers & Waveguides",
+                                content: ["Lasers and optical waveguides to guide light across the chip."]
                             },
                             {
-                                title: "Advantages",
-                                content: ["Speed of light.", "Massive Parallelism.", "Low Heat."]
+                                title: "Modulators & Resonators",
+                                content: ["To encode data onto the light signal."]
+                            },
+                            {
+                                title: "Optical Logic Gates",
+                                content: ["All-optical gates (AND, OR, NOT) for true photon-based computation."]
+                            }
+                        ]
+                    },
+                    {
+                        isTree: true,
+                        root: {
+                            title: "Advantages",
+                            content: ["Speed, Parallelism, and Efficiency."]
+                        },
+                        children: [
+                            {
+                                title: "Unprecedented Speed",
+                                content: ["Data transfer occurs at the speed of light.", "Massive bandwidth via wavelength-division multiplexing (WDM)."]
+                            },
+                            {
+                                title: "Massive Parallelism",
+                                content: ["Simultaneous spatial operations, especially matrix multiplications crucial for AI."]
+                            },
+                            {
+                                title: "Energy Efficiency",
+                                content: ["Minimal heat.", "Significantly less power for data transmission than electrical counterparts."]
                             }
                         ]
                     }
@@ -406,12 +555,16 @@ const courseData = [
                     {
                         cards: [
                             {
-                                title: "Key Areas of Development",
+                                title: "Current Trends in Advanced Architecture",
                                 content: [
-                                    "AI (TPUs).",
-                                    "Chiplets (Modular).",
-                                    "Near-Memory.",
-                                    "Security-First."
+                                    "<span style='color: #4ade80;'>AI and Machine Learning Focus</span>: Development of custom accelerators like TPUs and NPUs, and the rise of neuromorphic computing.",
+                                    "<span style='color: #4ade80;'>Chiplet-Based Design</span>: Modular approach using standardized interconnects (e.g., UCIe) for flexibility and cost efficiency.",
+                                    "<span style='color: #4ade80;'>Near-Memory Computing (PIM)</span>: Commercialization efforts driven by industry standards like Compute Express Link (CXL) for memory pooling.",
+                                    "<span style='color: #4ade80;'>Domain-Specific Architectures (DSAs)</span>: Creating application-specific accelerators (crypto, video, networking) optimized for single tasks.",
+                                    "<span style='color: #4ade80;'>Advanced Packaging</span>: Utilizing 2.5D interposers and co-packaged optics (CPO) to maximize density and bandwidth.",
+                                    "<span style='color: #4ade80;'>Sustainable Computing</span>: Integrating low-power design, energy harvesting, and carbon-aware operational models.",
+                                    "<span style='color: #4ade80;'>Security-First Architectures</span>: Incorporating hardware-based security features, confidential computing enclaves, and post-quantum acceleration.",
+                                    "<span style='color: #4ade80;'>Edge and Distributed Computing</span>: Specialized processors for Edge AI and decentralized processing frameworks."
                                 ]
                             }
                         ]
@@ -424,51 +577,98 @@ const courseData = [
                     {
                         cards: [
                             {
-                                title: "Heterogeneous",
-                                content: ["Goal: Optimization.", "Con: Complexity."]
+                                title: "Heterogeneous Computing",
+                                content: [
+                                    "Goal: Task-optimized processing.",
+                                    "Key Benefit: Performance and energy efficiency across mixed workloads.",
+                                    "Main Challenge: Programming complexity and scheduling across diverse processors."
+                                ]
                             },
                             {
-                                title: "FPGA",
-                                content: ["Goal: Flexibility.", "Con: Design difficulty."]
+                                title: "Reconfigurable (FPGA)",
+                                content: [
+                                    "Goal: Hardware flexibility and customization.",
+                                    "Key Benefit: Adaptability and high-throughput spatial parallelism.",
+                                    "Main Challenge: Design complexity (requires HDL expertise)."
+                                ]
                             },
                             {
                                 title: "Memory-Centric",
-                                content: ["Goal: Data movement.", "Con: New software model."]
+                                content: [
+                                    "Goal: Reduce energy-intensive data movement.",
+                                    "Key Benefit: High bandwidth and significant energy reduction.",
+                                    "Main Challenge: Requires a major software paradigm shift and new programming models."
+                                ]
                             },
                             {
                                 title: "3D ICs",
-                                content: ["Goal: Integration.", "Con: Thermals."]
+                                content: [
+                                    "Goal: Vertical integration and miniaturization.",
+                                    "Key Benefit: Small footprint and high performance via short interconnects.",
+                                    "Main Challenge: Severe thermal management issues (hotspots)."
+                                ]
                             },
                             {
-                                title: "Optical",
-                                content: ["Goal: Speed.", "Con: Cost/Size."]
+                                title: "Optical/Photonic",
+                                content: [
+                                    "Goal: Light-based data transport and processing.",
+                                    "Key Benefit: Unmatched speed, bandwidth, and energy efficiency.",
+                                    "Main Challenge: Miniaturization and high fabrication costs."
+                                ]
                             }
                         ]
                     }
                 ]
             },
             {
-                title: "IX. Evolution Path",
+                title: "IX. Key Takeaways and Outlook",
                 groups: [
                     {
                         isTree: true,
                         root: {
-                            title: "Evolution Path",
-                            content: ["From General to Specific."]
+                            title: "Evolution Path of Computing",
+                            content: ["From General to Domain-Specific."]
                         },
                         children: [
                             {
-                                title: "Stages",
-                                content: ["Homogeneous -> Heterogeneous -> Specialized."]
+                                title: "1. Homogeneous",
+                                content: ["Traditional multi-core CPUs."]
                             },
                             {
-                                title: "Future",
-                                content: ["Convergence & Modularity (Chiplets)."]
+                                title: "2. Heterogeneous",
+                                content: ["CPU + GPU + FPGA collaboration."]
+                            },
+                            {
+                                title: "3. Specialized",
+                                content: ["PIM, 3D ICs, Optical components."]
+                            },
+                            {
+                                title: "4. Domain-Specific",
+                                content: ["Custom accelerators (DSAs) optimized for specific applications (AI, video)."]
+                            }
+                        ]
+                    },
+                    {
+                        cards: [
+                            {
+                                title: "Future Direction: Convergence and Modularity",
+                                content: [
+                                    "The future lies in the integration and convergence of these disparate technologies into cohesive, modular systems."
+                                ]
+                            },
+                            {
+                                title: "Key Drivers",
+                                content: [
+                                    "<span style='color: #4ade80;'>Composability</span>: Systems built from interchangeable chiplets, favoring modularity.",
+                                    "<span style='color: #4ade80;'>Hybrid Integration</span>: Heterogeneous chiplets housed in advanced 3D packages with optical interconnects.",
+                                    "<span style='color: #4ade80;'>Optimization</span>: Prioritization of energy efficiency, AI acceleration, and high memory bandwidth."
+                                ]
                             }
                         ]
                     }
                 ]
             }
+
         ]
     },
     {

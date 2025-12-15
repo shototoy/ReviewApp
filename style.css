@@ -485,3 +485,179 @@ body {
 .child-wrapper:only-child::after {
     display: none;
 }
+
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 8px;
+    margin-right: 16px;
+}
+
+.menu-toggle:hover {
+    color: var(--accent);
+}
+
+/* Responsive Styles */
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 80%;
+        max-width: 300px;
+        z-index: 1000;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Overlay when sidebar is open */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .top-bar {
+        padding: 0 12px;
+        height: 60px;
+    }
+
+    .search-box input {
+        width: 120px;
+        font-size: 0.8rem;
+    }
+
+    .search-box input:focus {
+        width: 150px;
+    }
+
+    /* Minimize Content Spacing */
+    .scrolling-content {
+        padding: 12px;
+    }
+
+    .topic-section {
+        margin-bottom: 32px;
+    }
+
+    .group-division {
+        margin-bottom: 32px;
+    }
+
+    .card-grid {
+        gap: 12px;
+        grid-template-columns: 1fr;
+        /* Stack standard grid cards */
+    }
+
+    .info-card {
+        padding: 16px;
+        /* Reduced padding */
+    }
+
+    /* Tree Layout - Keep in Row, scale down */
+    .tree-children {
+        flex-direction: row;
+        /* Keep row */
+        gap: 8px;
+        /* Minimize gap */
+        overflow-x: auto;
+        /* Allow scroll if absolutely necessary but try to fit */
+        padding-bottom: 8px;
+    }
+
+    .child-wrapper {
+        min-width: 0;
+        /* Allow shrinking */
+        flex: 1;
+        /* Distribute space */
+    }
+
+    /* Ensure lines still look okay or hide them if too cramped */
+    .child-wrapper::before,
+    .tree-root::after {
+        height: 15px;
+        /* Shorter vertical lines */
+    }
+
+    .child-wrapper::before {
+        top: -15px;
+    }
+
+    .child-wrapper::after {
+        top: -15px;
+    }
+
+    /* Font Scaling for Tree Children */
+    .tree-children .info-card {
+        padding: 10px;
+        /* Even smaller padding for tree nodes */
+    }
+
+    .tree-children .card-header {
+        font-size: 0.85rem;
+        /* Smaller title */
+        margin-bottom: 6px;
+    }
+
+    .tree-children .card-body {
+        font-size: 0.75rem;
+        /* Smaller text */
+        line-height: 1.3;
+    }
+
+    .tree-children .card-body li {
+        padding-left: 10px;
+        margin-bottom: 4px;
+    }
+
+    .tree-children .card-body li::before {
+        font-size: 0.8em;
+    }
+
+    /* Global Font Adjustments on Mobile */
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .top-bar h2 {
+        font-size: 0.95rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+    }
+
+    .strategy-text {
+        font-size: 0.9rem;
+    }
+}
