@@ -56,22 +56,86 @@ document.addEventListener('DOMContentLoaded', () => {
             titleEl.textContent = section.title;
             sectionEl.appendChild(titleEl);
 
-            const gridEl = document.createElement('div');
-            gridEl.className = 'card-grid';
+            // Handle Groups (New Structure) or Cards (Legacy)
+            if (section.groups) {
+                section.groups.forEach(group => {
+                    const groupContainer = document.createElement('div');
+                    groupContainer.className = 'group-division'; // CSS for explicit division
 
-            section.cards.forEach(card => {
-                const cardEl = createCard(card);
-                gridEl.appendChild(cardEl);
-            });
+                    if (group.isTree) {
+                        // Tree Layout
+                        const treeEl = createTreeLayout(group);
+                        groupContainer.appendChild(treeEl);
+                    } else {
+                        // Standard Grid Layout for this group
+                        const gridEl = document.createElement('div');
+                        gridEl.className = 'card-grid';
+                        group.cards.forEach(card => {
+                            gridEl.appendChild(createCard(card));
+                        });
+                        groupContainer.appendChild(gridEl);
+                    }
+                    sectionEl.appendChild(groupContainer);
+                });
+            } else if (section.cards) {
+                // Legacy Flat Grid
+                const gridEl = document.createElement('div');
+                gridEl.className = 'card-grid';
+                section.cards.forEach(card => {
+                    gridEl.appendChild(createCard(card));
+                });
+                sectionEl.appendChild(gridEl);
+            }
 
-            sectionEl.appendChild(gridEl);
             contentContainer.appendChild(sectionEl);
         });
+    }
+
+    function createTreeLayout(group) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'tree-wrapper';
+
+        // Root/Parent Card
+        const rootContainer = document.createElement('div');
+        rootContainer.className = 'tree-root';
+        const rootCard = createCard(group.root);
+        rootCard.classList.add('card-root');
+        rootContainer.appendChild(rootCard);
+        wrapper.appendChild(rootContainer);
+
+        // Connecting Lines Container (Visual)
+        const connector = document.createElement('div');
+        connector.className = 'tree-connector-vertical';
+        wrapper.appendChild(connector);
+
+        // Children Container
+        if (group.children && group.children.length > 0) {
+            const childrenContainer = document.createElement('div');
+            childrenContainer.className = 'tree-children';
+
+            group.children.forEach(child => {
+                const childWrapper = document.createElement('div');
+                childWrapper.className = 'child-wrapper';
+
+                // Add horizontal connector logic in CSS based on child-wrapper
+                childWrapper.appendChild(createCard(child));
+                childrenContainer.appendChild(childWrapper);
+            });
+            wrapper.appendChild(childrenContainer);
+        }
+
+        return wrapper;
     }
 
     function createCard(cardData) {
         const card = document.createElement('div');
         card.className = 'info-card';
+        if (cardData.level === 2) {
+            card.classList.add('card-level-2');
+        }
+        if (cardData.linkType === 'linked') {
+            card.classList.add('card-linked');
+        }
 
         // Wrapper for main content
         const contentWrapper = document.createElement('div');
@@ -127,6 +191,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.appendChild(overlay);
             }
         }
+
+        // Add Click Event for Mobile/Touch devices
+        card.addEventListener('click', () => {
+            // Close other cards first (optional, but good for UX)
+            if (!card.classList.contains('mobile-active')) {
+                document.querySelectorAll('.info-card.mobile-active').forEach(c => c.classList.remove('mobile-active'));
+            }
+            card.classList.toggle('mobile-active');
+        });
 
         return card;
     }

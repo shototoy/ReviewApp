@@ -173,7 +173,8 @@ body {
     /* Ensure content is above the overlay initially if needed, though we will use opacity */
 }
 
-.info-card:hover {
+.info-card:hover,
+.info-card.mobile-active {
     transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     border-color: var(--accent);
@@ -183,7 +184,8 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.info-card:hover .card-content-wrapper {
+.info-card:hover .card-content-wrapper,
+.info-card.mobile-active .card-content-wrapper {
     opacity: 0.1;
     /* Fade out content slightly */
     filter: blur(2px);
@@ -211,7 +213,8 @@ body {
     text-align: center;
 }
 
-.info-card:hover .strategy-overlay {
+.info-card:hover .strategy-overlay,
+.info-card.mobile-active .strategy-overlay {
     opacity: 1;
     transform: translateY(0);
 }
@@ -323,4 +326,162 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #4a5568;
+}
+
+/* Hierarchy / Tree Styles */
+.card-level-2 {
+    border-left: 4px solid #4ade80;
+    /* Match title color */
+    background: linear-gradient(90deg, rgba(74, 222, 128, 0.05) 0%, rgba(34, 38, 46, 0) 100%);
+}
+
+.card-level-2 .card-header::before {
+    content: "";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 1.2em;
+    color: #4ade80;
+    transform: translateY(-2px);
+}
+
+/* For linked cards that are not strict children but follow-ups */
+.card-linked {
+    border-left: 4px solid var(--accent);
+}
+
+.card-linked .card-header::before {
+    content: "";
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 1.2em;
+    color: var(--accent);
+}
+
+
+/* Group Divisions */
+.group-division {
+    margin-bottom: 60px;
+    /* Increased whitespace for separation */
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.group-division:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Tree Layout Styles */
+.tree-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 20px 0;
+}
+
+.tree-root {
+    z-index: 2;
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    /* Fix for connector line positioning */
+}
+
+.tree-root .info-card {
+    border-color: #4ade80;
+    /* Highlight root */
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.1);
+}
+
+.tree-connector-vertical {
+    width: 2px;
+    height: 20px;
+    background: #4ade80;
+    /* Green line */
+    position: absolute;
+    top: 80px;
+    /* Adjust based on root card height approx */
+    /* This depends on content, dynamic approach is better but CSS is simpler */
+    /* Actually better: use ::after on root */
+    display: none;
+    /* Removing simple dictation */
+}
+
+/* Better Line Approach */
+.tree-root::after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    /* extend below root */
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: #2d3342;
+    /* Line color */
+    transform: translateX(-50%);
+}
+
+.tree-children {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Remove old approximate bar */
+.tree-children::before {
+    display: none;
+}
+
+.child-wrapper {
+    position: relative;
+    flex: 1;
+    /* Force equal widths to keep tree balanced */
+    min-width: 0;
+    /* Allow flex shrink if needed, preventing overflow */
+}
+
+/* Vertical Line Up from Card */
+.child-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: #2d3342;
+    transform: translateX(-50%);
+}
+
+/* Horizontal Connector Line (New Approach) */
+.child-wrapper::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    /* Aligned with top of vertical connector */
+    height: 2px;
+    background: #2d3342;
+    width: 100%;
+    left: 0;
+}
+
+/* First Child: Line starts from center and goes right */
+.child-wrapper:first-child::after {
+    left: 50%;
+    width: 50%;
+}
+
+/* Last Child: Line starts from left and ends at center */
+.child-wrapper:last-child::after {
+    width: 50%;
+    left: 0;
+}
+
+/* Single Child: No horizontal line needed */
+.child-wrapper:only-child::after {
+    display: none;
 }
